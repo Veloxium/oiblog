@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 function ListArticle() {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <Card className="flex flex-col justify-between">
         <div>
           <div className="relative w-full h-40">
