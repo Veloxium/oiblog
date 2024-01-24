@@ -21,6 +21,7 @@ function MyCarousel() {
         loop: true,
       }}
       plugins={[plugin.current]}
+      className="my-2"
     >
       <CarouselContent>
         <CarouselItem>

@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "../dropdowntheme/dropdowntheme";
+import { Button } from "../ui/button";
 
 const kategori: { title: string; href: string }[] = [
   {
@@ -53,9 +55,9 @@ const kategori: { title: string; href: string }[] = [
 
 function Navbar() {
   return (
-    <nav className="flex justify-between items-center py-4">
+    <nav className="flex justify-between items-center py-8">
       <Link href={"/"} className={styles.title}>
-        Oi Blog
+        Oi Blog .
       </Link>
       <div className="hidden md:flex">
         <NavigationMenu>
@@ -99,18 +101,17 @@ function Navbar() {
         </NavigationMenu>
       </div>
       <div className="flex gap-4">
-        <Link href={"/login"}>
-          <h5 className={navigationMenuTriggerStyle()}>Log in</h5>
-        </Link>
-        <Link href={"/login"}>
-          <h5
-            className={
-              "group inline-flex h-10 w-max items-center justify-center rounded-md bg-newblack text-newwhite px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-            }
-          >
-            Sign up
-          </h5>
-        </Link>
+        <ModeToggle />
+        <Button variant={"outline"}>
+          <Link href={"/login"}>
+            <h5>Log in</h5>
+          </Link>
+        </Button>
+        <Button variant={"default"}>
+          <Link href={"/login"}>
+            <h5>Sign up</h5>
+          </Link>
+        </Button>
       </div>
     </nav>
   );
