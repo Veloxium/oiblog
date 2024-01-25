@@ -13,15 +13,15 @@ import { Button } from "@/components/ui/button";
 function ListArticle() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>
@@ -79,15 +79,15 @@ function ListArticle() {
           </CardFooter>
         </div>
       </Card>
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>
@@ -147,15 +147,15 @@ function ListArticle() {
           </CardFooter>
         </div>
       </Card>
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>
@@ -212,15 +212,15 @@ function ListArticle() {
           </CardFooter>
         </div>
       </Card>
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>
@@ -278,15 +278,15 @@ function ListArticle() {
           </CardFooter>
         </div>
       </Card>
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>
@@ -346,15 +346,15 @@ function ListArticle() {
           </CardFooter>
         </div>
       </Card>
-      <Card className="flex flex-col justify-between">
+      <Card className="group flex flex-col justify-between">
         <div>
-          <div className="relative w-full h-40">
+          <div className="relative w-full h-40 overflow-hidden rounded-md">
             <Image
               src={
                 "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt="carousel"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               fill
             />
           </div>

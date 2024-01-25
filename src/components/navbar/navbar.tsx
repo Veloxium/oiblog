@@ -55,7 +55,7 @@ const kategori: { title: string; href: string }[] = [
 
 function Navbar() {
   return (
-    <nav className="flex justify-between items-center py-8">
+    <nav className="sticky top-0 flex justify-between items-center pt-8 pb-4 mb-4 dark:bg-zinc-950 bg-white z-20">
       <Link href={"/"} className={styles.title}>
         Oi Blog .
       </Link>
@@ -63,14 +63,14 @@ function Navbar() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Home
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Kategori</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Topik</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {kategori.map((item) => (

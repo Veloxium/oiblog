@@ -1,5 +1,6 @@
 import MyCarousel from "@/components/carousel/mycarousel";
 import ListArticle from "@/components/listarticle/listarticle";
+import MyPagination from "@/components/pagination/mypagination";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -34,6 +35,9 @@ export default function Home() {
           </div>
         </div>
         <ListArticle />
+        <div className="mt-4">
+        <MyPagination />
+        </div>
       </div>
     </main>
   );
