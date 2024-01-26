@@ -17,6 +17,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "../dropdowntheme/dropdowntheme";
 import { Button } from "../ui/button";
+import PopProfile from "../popprofile/popprofile";
 
 const kategori: { title: string; href: string }[] = [
   {
@@ -54,6 +55,8 @@ const kategori: { title: string; href: string }[] = [
 ];
 
 function Navbar() {
+  const authenticated = true;
+
   return (
     <nav className="sticky top-0 flex justify-between items-center pt-8 pb-4 mb-4 dark:bg-zinc-950 bg-white z-20">
       <Link href={"/"} className={styles.title}>
@@ -102,16 +105,24 @@ function Navbar() {
       </div>
       <div className="flex gap-4">
         <ModeToggle />
-        <Button variant={"outline"}>
-          <Link href={"/login"}>
-            <h5>Log in</h5>
-          </Link>
-        </Button>
-        <Button variant={"default"}>
-          <Link href={"/login"}>
-            <h5>Sign up</h5>
-          </Link>
-        </Button>
+        {authenticated ? (
+          <div>
+            <PopProfile />
+          </div>
+        ) : (
+          <div className="flex gap-4">
+            <Button variant={"outline"}>
+              <Link href={"/login"}>
+                <h5>Log in</h5>
+              </Link>
+            </Button>
+            <Button variant={"default"}>
+              <Link href={"/login"}>
+                <h5>Sign up</h5>
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
     </nav>
   );

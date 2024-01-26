@@ -1,3 +1,4 @@
+import Comment from "@/components/comment/comment";
 import ListArticleDetail from "@/components/listarticle/listarticledetail";
 import ProfileTag from "@/components/profiletag/profiletag";
 import { Bold } from "lucide-react";
@@ -113,6 +114,9 @@ function DetailPage() {
                 eaque dolor vitae, quis iure veritatis quo minus assumenda,
                 rerum laboriosam est? Maxime, sapiente sint.
               </p>
+            </div>
+            <div className="my-10">
+              <Comment />
             </div>
           </div>
         </div>
