@@ -19,7 +19,7 @@ function ListArticleDetail() {
             <div className="relative w-full h-36 overflow-hidden rounded-md">
               <Image
                 src={
-                  "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  "https://images.pexels.com/photos/1464223/pexels-photo-1464223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 }
                 alt="carousel"
                 className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
@@ -44,7 +44,7 @@ function ListArticleDetail() {
             <div className="relative w-full h-36 overflow-hidden rounded-md">
               <Image
                 src={
-                  "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  "https://images.pexels.com/photos/1464223/pexels-photo-1464223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 }
                 alt="carousel"
                 className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
@@ -69,7 +69,7 @@ function ListArticleDetail() {
             <div className="relative w-full h-36 overflow-hidden rounded-md">
               <Image
                 src={
-                  "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  "https://images.pexels.com/photos/1464223/pexels-photo-1464223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 }
                 alt="carousel"
                 className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
@@ -94,7 +94,7 @@ function ListArticleDetail() {
             <div className="relative w-full h-36 overflow-hidden rounded-md">
               <Image
                 src={
-                  "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  "https://images.pexels.com/photos/1464223/pexels-photo-1464223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 }
                 alt="carousel"
                 className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"

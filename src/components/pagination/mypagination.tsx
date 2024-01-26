@@ -23,7 +23,7 @@ function MyPagination() {
         <PaginationItem>
           <PaginationLink href="#">2</PaginationLink>
         </PaginationItem>
-        <PaginationItem>
+        <PaginationItem className="hidden sm:flex">
           <PaginationLink href="#">3</PaginationLink>
         </PaginationItem>
         <PaginationItem>

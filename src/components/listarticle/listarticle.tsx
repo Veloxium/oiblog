@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
+import Link from "next/link";
 
 function ListArticle() {
   return (
@@ -40,7 +40,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +110,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +177,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +245,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -307,7 +315,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -372,7 +382,9 @@ function ListArticle() {
         <div>
           <CardContent>
             <div className="flex justify-between items-center">
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Link href={"/detail"}>
+                <Button variant={"outline"}>Selengkapnya</Button>
+              </Link>
               <Button variant={"outline"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
