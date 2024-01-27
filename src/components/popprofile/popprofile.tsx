@@ -54,7 +54,7 @@ function PopProfile() {
                 src={
                   "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 }
-                alt="carousel"
+                alt="profile"
                 className="object-cover rounded-full aspect-square"
                 fill
               />
@@ -76,10 +76,10 @@ function PopProfile() {
               </Button>
             </Link>
             <AlertDialog>
-              <AlertDialogTrigger>
-                <Button variant={"destructive"} className="w-full">
-                  Logout
-                </Button>
+              <AlertDialogTrigger
+                className={cn(buttonVariants({ variant: "destructive" }))}
+              >
+                Logout
               </AlertDialogTrigger>
               <AlertDialogContent className="w-[90%] rounded-md">
                 <AlertDialogHeader>

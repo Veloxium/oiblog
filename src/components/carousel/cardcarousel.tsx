@@ -15,7 +15,7 @@ function CardCarousel() {
       <div className="z-10 px-4 py-2 m-2 backdrop-filter rounded-lg backdrop-blur-lg bg-opacity-25">
         <p className="text-sm text-white">Wisata dan Kuliner | 2 Jan 2024</p>
         <p className="-mt-0 text-white font-bold text-2xl">Lorem Ipsum 2024</p>
-        <p className="text-white">
+        <p className="text-white line-clamp-3">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam
           quisquam aut doloribus ea voluptatem, vel nihil velit magnam rerum ad
           aperiam explicabo officiis facilis!
