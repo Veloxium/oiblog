@@ -111,16 +111,16 @@ function Navbar() {
           </div>
         ) : (
           <div className="flex gap-4">
-            <Button variant={"outline"}>
-              <Link href={"/login"}>
+            <Link href={"/login"}>
+              <Button variant={"outline"}>
                 <h5>Log in</h5>
-              </Link>
-            </Button>
-            <Button variant={"default"}>
-              <Link href={"/login"}>
+              </Button>
+            </Link>
+            <Link href={"/login"}>
+              <Button variant={"default"}>
                 <h5>Sign up</h5>
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         )}
       </div>
