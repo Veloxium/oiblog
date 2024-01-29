@@ -1,28 +1,32 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-function CardCarousel() {
+function CardCarousel({ item }: { item: any }) {
   return (
-    <div className="relative h-[460px] rounded-md flex items-end justify-start bg-slate-400">
-      <Image
-        src={
-          "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        }
-        alt="carousel"
-        className="object-cover rounded-md"
-        fill
-      />
-      <div className="z-10 px-4 py-2 m-2 backdrop-filter rounded-lg backdrop-blur-lg bg-opacity-25">
-        <p className="text-sm text-white">Wisata dan Kuliner | 2 Jan 2024</p>
-        <p className="-mt-0 text-white font-bold text-2xl">Lorem Ipsum 2024</p>
-        <p className="text-white line-clamp-3">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam
-          quisquam aut doloribus ea voluptatem, vel nihil velit magnam rerum ad
-          aperiam explicabo officiis facilis!
-        </p>
-        <p className="text-white text-xs">Blogger : Mochammad Fernanda</p>
+    <Link href={`/${item.slug}`} className="cursor-pointer">
+      <div className="relative h-[460px] rounded-md flex items-end justify-start bg-slate-400">
+        {item.img && (
+          <Image
+            src={item.img}
+            alt="carousel"
+            className="object-cover rounded-md"
+            fill
+          />
+        )}
+        <div className="z-10 px-4 py-2 m-2 w-full rounded-lg hover:backdrop-blur-lg bg-opacity-25 hover:backdrop-filter">
+          <p className="text-sm text-white capitalize">
+            {item.cat.title} | {item.createdAt.slice(0, 10)}
+          </p>
+          <p className="-mt-0 text-white font-bold text-2xl">{item.title}</p>
+          <div
+            className="text-white line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: item.desc }}
+          />
+          <p className="text-white text-xs">Oleh : {item.user.name}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

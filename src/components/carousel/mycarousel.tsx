@@ -1,42 +1,23 @@
-"use client";
-import CardCarousel from "@/components/carousel/cardcarousel";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import ListCarousel from "./listcarousel";
 
-function MyCarousel() {
-  const plugin = useRef(
-    Autoplay({ delay: 6000, stopOnInteraction: false})
+const getData = async () => {
+  const res = await fetch(
+    `http://localhost:3000/api/posts/newest`,
+    {
+      method: "GET",
+      cache: "no-cache",
+    }
   );
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+};
+
+async function MyCarousel() {
+  const {posts} = await getData();
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      plugins={[plugin.current]}
-      className="my-2"
-    >
-      <CarouselContent>
-        <CarouselItem>
-          <CardCarousel />
-        </CarouselItem>
-        <CarouselItem>
-          <CardCarousel />
-        </CarouselItem>
-        <CarouselItem>
-          <CardCarousel />
-        </CarouselItem>
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <ListCarousel items = {posts}/>
   );
 }
 

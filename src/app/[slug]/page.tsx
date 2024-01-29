@@ -4,24 +4,39 @@ import ProfileTag from "@/components/profiletag/profiletag";
 import { Bold } from "lucide-react";
 import Image from "next/image";
 
-function DetailPage() {
+const getData = async (slug: string) => {
+  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+    method: "GET",
+    cache: "no-cache",
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+};
+
+async function DetailPage({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
+  const { post } = await getData(slug);
   return (
     <main>
       <div className="w-full flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-2/3 flex flex-col gap-4">
-          <p className="font-bold">Teknologi</p>
+          <p className="font-bold capitalize">{post.cat.title}</p>
           <div className="relative w-full h-80">
-            <Image
-              src={
-                "https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              alt="carousel"
-              className="object-cover rounded-md"
-              fill
-            />
+            {post.img && (
+              <Image
+                src={post.img}
+                alt="carousel"
+                className="object-cover rounded-md"
+                fill
+              />
+            )}
           </div>
           <div className="flex justify-between items-center">
-            <p className="text-sm p-2 bg-slate-100 rounded-md">2 Jan 2024</p>
+            <p className="text-sm p-2 bg-slate-100 rounded-md">
+              {post.createdAt.slice(0, 10)}
+            </p>
             <div className="flex gap-2">
               <div className="flex items-center gap-2 p-2 bg-slate-100 rounded-md">
                 <svg
@@ -43,7 +58,7 @@ function DetailPage() {
                     d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                 </svg>
-                <p className="-mt-0 text-sm">20</p>
+                <p className="-mt-0 text-sm">{post.views}</p>
               </div>
               <div className="flex items-center gap-2 p-2 bg-slate-100 rounded-md">
                 <svg
@@ -64,59 +79,13 @@ function DetailPage() {
             </div>
           </div>
           <div>
-            <h1 className="text-3xl font-bold">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-              doloremque omnis facilis?
-            </h1>
+            <h1 className="text-3xl font-bold">{post.title}</h1>
             <div className="py-4">
-              <ProfileTag />
+              <ProfileTag email={post.userEmail} />
             </div>
-            <div className="">
-              <p>
-                <strong>Lorem ipsum dolor sit</strong>, amet consectetur
-                adipisicing elit. Voluptatem totam asperiores dicta aperiam
-                voluptatibus enim maiores veritatis earum dolorem, alias hic cum
-                ipsum et, voluptatum accusantium repudiandae modi sequi suscipit
-                voluptate eligendi voluptates! Dolore autem, sapiente veritatis
-                amet ipsum dolorem fuga est aut repellat ab laboriosam minima
-                corrupti eius ea pariatur dicta natus optio magni impedit
-                officia architecto consectetur? Dolore dolorem debitis nobis.
-                Officia eos tenetur, assumenda <i>repudiandae eveniet</i> quia
-                laborum distinctio vero at necessitatibus impedit velit.
-              </p>
-              <br />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Reiciendis, <u>nam dolorum doloremque</u> esse et deserunt enim
-                repellendus laudantium quas saepe. Iusto nobis repellat ipsa
-                nostrum? Voluptatibus odit dolor at iure.
-              </p>
-              <br />
-              <p>
-                Temporibus perferendis ex, reiciendis, esse natus iste
-                voluptates vel recusandae placeat pariatur suscipit. Error quas
-                cupiditate voluptatum? Vero perspiciatis optio, dignissimos
-                nostrum corrupti magni dolorum, minus harum distinctio error
-                expedita enim dolores eum blanditiis et, sunt quidem facere
-                ratione doloribus. Quis possimus quae quas, veniam ratione
-                eligendi dignissimos et exercitationem voluptates officia
-                voluptatem nobis tenetur.
-              </p>
-              <br />
-              <p>
-                dolorum suscipit? Iste eius quo aliquam non consequatur
-                veritatis atque quia commodi quasi magni laboriosam, debitis
-                repudiandae omnis rerum laborum ipsam sint ex! Recusandae ea
-                officiis et iure, repellendus illum iste praesentium sed,
-                reprehenderit quibusdam itaque omnis laudantium, possimus
-                consectetur maiores aliquam sunt animi eum beatae assumenda!
-                Veniam laborum architecto pariatur magnam perspiciatis error
-                eaque dolor vitae, quis iure veritatis quo minus assumenda,
-                rerum laboriosam est? Maxime, sapiente sint.
-              </p>
-            </div>
+            <div dangerouslySetInnerHTML={{ __html: post.desc }} />
             <div className="my-10">
-              <Comment />
+              <Comment postSlug={slug} />
             </div>
           </div>
         </div>

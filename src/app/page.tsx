@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: any }) {
+  const page = parseInt(searchParams?.page as string) || 1;
+  const cat = searchParams?.cat as string || "";
   return (
     <main>
       <div className="mt-6">
@@ -34,10 +36,8 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <ListArticle />
-        <div className="mt-4">
-        <MyPagination />
-        </div>
+        <ListArticle page={page} cat={cat} />
+       
       </div>
     </main>
   );

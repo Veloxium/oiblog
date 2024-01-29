@@ -19,8 +19,10 @@ import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
 import { navigationMenuTriggerStyle } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { signOut, useSession } from "next-auth/react";
 
 function PopProfile() {
+  const { data } = useSession();
   return (
     <Popover>
       <PopoverTrigger
@@ -50,18 +52,19 @@ function PopProfile() {
         <div className="flex flex-col">
           <div className="flex gap-4 items-center">
             <div className="relative w-12 h-12 rounded-full aspect-square">
-              <Image
-                src={
-                  "https://images.pexels.com/photos/2064693/pexels-photo-2064693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                }
-                alt="profile"
-                className="object-cover rounded-full aspect-square"
-                fill
-              />
+              {data?.user?.image && (
+                <Image
+                  src={data?.user?.image}
+                  alt="profile"
+                  className="object-cover rounded-full aspect-square"
+                  sizes="48px"
+                  fill
+                />
+              )}
             </div>
             <div className="flex flex-col">
-              <h2>Mochammad Fernanda</h2>
-              <h5 className="text-sm text-slate-400">fernandooo@gmail.com</h5>
+              <h2>{data?.user?.name}</h2>
+              <h5 className="text-sm text-slate-400">{data?.user?.email}</h5>
             </div>
           </div>
           <div className="flex flex-col gap-2 mt-6">
@@ -93,7 +96,9 @@ function PopProfile() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Batal</AlertDialogCancel>
-                  <AlertDialogAction>Lanjutkan</AlertDialogAction>
+                  <AlertDialogAction onClick={() => signOut()}>
+                    Lanjutkan
+                  </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
