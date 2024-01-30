@@ -9,11 +9,8 @@ export const GET = async (req: NextRequest, { params }: { params: { slug: string
                 slug,
             },
             include: {
-                cat: {
-                    select: {
-                        title: true,
-                    },
-                }
+                cat: true,
+                user: true,
             },
         });
         return new NextResponse(JSON.stringify({ post }));

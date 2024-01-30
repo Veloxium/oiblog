@@ -23,7 +23,14 @@ export const GET = async (req: NextRequest) => {
                 select: {
                     title: true,
                 },
-            }
+            },
+            user: {
+                select: {
+                    name: true,
+                    email: true,
+                    image: true,
+                },
+            },
         },
 
     }

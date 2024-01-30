@@ -16,7 +16,8 @@ export const GET = async (req: NextRequest) => {
                 user: {
                     select: {
                         name: true,
-                        image: true
+                        image: true,
+                        email: true,
                     }
                 }
             },
@@ -43,13 +44,35 @@ export const POST = async (req: NextRequest) => {
 
     try {
         const body  =  await req.json();
-        const comment = await prisma.comment.create({
+        await prisma.comment.create({
             data: {
                 ...body,
                 userEmail: userEmail,
             }
         });
-        return new NextResponse(JSON.stringify({ comment }));
+        return new NextResponse(JSON.stringify({ message: "Comment berhasil ditambahkan" }));
+    } catch (error) {
+        console.error(error);
+        return new NextResponse(JSON.stringify({ message: "Something went wrong" }));
+    }
+};
+
+export const DELETE = async (req: NextRequest) => {
+    const session = await getAuthSession();
+    if (!session) {
+        console.log("Unauthorized")
+        return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+            status: 401
+        });
+    }
+    try {
+        const body  =  await req.json();
+        await prisma.comment.delete({
+            where: {
+                id: body.id,
+            }
+        });
+        return new NextResponse(JSON.stringify({ message: "Komentar berhasil dihapus" }));
     } catch (error) {
         console.error(error);
         return new NextResponse(JSON.stringify({ message: "Something went wrong" }));

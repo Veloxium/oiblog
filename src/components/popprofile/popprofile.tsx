@@ -17,7 +17,6 @@ import {
 import Image from "next/image";
 import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
-import { navigationMenuTriggerStyle } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { signOut, useSession } from "next-auth/react";
 

@@ -5,12 +5,10 @@ import styles from "./navbar.module.css";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import React from "react";
@@ -20,7 +18,6 @@ import { Button } from "../ui/button";
 import PopProfile from "../popprofile/popprofile";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { stat } from "fs";
 
 export const kategori: { title: string; href: string }[] = [
   {
@@ -58,7 +55,7 @@ export const kategori: { title: string; href: string }[] = [
 ];
 
 function Navbar() {
-  const { data, status } = useSession();
+  const { status } = useSession();
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const [topik, setTopik] = React.useState(false);
@@ -172,9 +169,17 @@ function Navbar() {
         <div className="fixed flex flex-col w-full min-h-full p-6 -mt-4 bg-white dark:bg-zinc-950 z-40">
           <div className="pb-10">
             <NavigationMenu className="flex flex-col w-full gap-4 max-w-none pb-10">
-              <Button variant={"secondary"} className="w-full h-14">
-                Home
-              </Button>
+              <Link href={"/"} className="w-full">
+                <Button
+                  variant={"secondary"}
+                  className="w-full h-14"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Home
+                </Button>
+              </Link>
               <Button
                 variant={"secondary"}
                 className="w-full h-14 flex gap-2 items-center"
@@ -222,18 +227,36 @@ function Navbar() {
                       key={item.title}
                       title={item.title}
                       href={item.href}
+                      onClick={() => {
+                        setTopik(false);
+                        setOpen(false);
+                      }}
                     ></ListItem>
                   ))}
                 </ul>
               )}
               <Link href={"/buat"} className="w-full">
-                <Button variant={"secondary"} className="w-full h-14">
+                <Button
+                  variant={"secondary"}
+                  className="w-full h-14"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
                   Buat Artikel
                 </Button>
               </Link>
-              <Button variant={"secondary"} className="w-full h-14">
-                Tentang Kami
-              </Button>
+              <Link href={"/"} className="w-full">
+                <Button
+                  variant={"secondary"}
+                  className="w-full h-14"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Tentang Kami
+                </Button>
+              </Link>
             </NavigationMenu>
           </div>
         </div>

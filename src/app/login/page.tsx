@@ -1,18 +1,18 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 function LoginPage() {
-  const { data, status } = useSession();
-  console.log(data, status);
+  const { status } = useSession();
   const router = useRouter();
-  React.useEffect(() => {
+  useEffect(() => {
     if (status === "authenticated") {
-      router.push("/");
+      router.replace("/");
     }
-  }, [status]);
+  }, [status, router]);
 
   return (
     <main>
@@ -20,8 +20,8 @@ function LoginPage() {
         <div className="flex flex-col gap-4 bg-primary-foreground py-20 px-10 rounded-md">
           <h1 className="text-3xl font-bold">Login</h1>
           <p className="-mt-0 mb-2">
-            Silahkan login terlebih dahulu, untuk mulai mengakses fitur lainnya di
-            Oi Blog 🥰
+            Silahkan login terlebih dahulu, untuk mulai mengakses fitur lainnya
+            di Oi Blog 🥰
           </p>
           {status === "loading" ? (
             <Button className="flex gap-2 items-center px-6 py-2 rounded-md text-white">

@@ -39,7 +39,7 @@ async function ListArticleDetail() {
           createdAt: string;
           cat: { title: string };
         }) => (
-          <Link href={`/${item.slug}`}>
+          <Link href={`/article/${item.slug}`}>
             <Card
               key={item.id}
               className="group flex flex-col justify-between cursor-pointer"
@@ -58,10 +58,10 @@ async function ListArticleDetail() {
                   )}
                 </div>
                 <CardHeader>
-                  <CardDescription className="text-xs capitalize">
+                  <CardDescription className="capitalize">
                     {item.cat.title} | {item.createdAt.slice(0, 10)}
                   </CardDescription>
-                  <CardTitle className="-mt-0 line-clamp-3">
+                  <CardTitle className="line-clamp-3 py-2">
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -71,11 +71,11 @@ async function ListArticleDetail() {
         )
       )}
 
-      <div>
-        <Button variant={"outline"} className="w-full">
+      <Link href={"/"} className="w-full">
+        <Button variant={"default"} className="w-full">
           Lihat Semua
         </Button>
-      </div>
+      </Link>
     </div>
   );
 }

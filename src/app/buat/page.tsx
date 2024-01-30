@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 
 function BuatPage() {
   const [value, setValue] = React.useState("");
-  const { data, status } = useSession();
+  const { status } = useSession();
   const [image, setImage] = React.useState("");
   const [file, setFile] = React.useState<File | null>(null);
   const router = useRouter();
@@ -33,7 +33,7 @@ function BuatPage() {
       formData.append("desc", value);
       // formData.append("image", file as File);
       formData.append("slug", slug);
-      const formDataObject = Object.fromEntries(formData.entries());
+      // const formDataObject = Object.fromEntries(formData.entries());
       const res = await fetch("/api/posts", {
         method: "POST",
         body: formData,
