@@ -51,7 +51,7 @@ function CardArticle({ item }: { item: any }) {
         <CardContent>
           <div className="flex justify-between items-center">
             <Link href={`/article/${item.slug}`}>
-              <Button variant={"outline"}>Selengkapnya</Button>
+              <Button variant={"outline"} className="bg-slate-50">Selengkapnya</Button>
             </Link>
             <Button
               variant={"default"}
