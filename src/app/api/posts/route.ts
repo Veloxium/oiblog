@@ -9,14 +9,15 @@ export const GET = async (req: NextRequest) => {
 
     const page = searchParams.get("page");
     const cat = searchParams.get("cat");
-
+    const search = searchParams.get("search");
     const POST_PER_PAGE = 6;
 
     const query = {
         take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (Number(page) - 1),
+        skip: POST_PER_PAGE * (Number(page || 1) - 1),
         where: {
-            ...(cat && { catSlug: cat }),
+            ...(cat && { catSlug: cat } as any), 
+            ...(search && { title: { contains: search, mode: 'insensitive' } }),
         },
         include: {
             cat: {

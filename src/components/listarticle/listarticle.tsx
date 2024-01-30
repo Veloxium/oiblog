@@ -1,9 +1,9 @@
 import MyPagination from "../pagination/mypagination";
 import CardArticle from "./cardarticle";
 
-const getData = async (page: number, cat: string) => {
+const getData = async (page: number, cat: string, search: string) => {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat}`,
+    `http://localhost:3000/api/posts?page=${page}&cat=${cat}&search=${search}`,
     {
       method: "GET",
       cache: "no-cache",
@@ -15,8 +15,17 @@ const getData = async (page: number, cat: string) => {
   return res.json();
 };
 
-async function ListArticle({ page, cat }: { page: number; cat: string }) {
-  const { posts, count } = await getData(page, cat);
+
+async function ListArticle({
+  page,
+  cat,
+  search,
+}: {
+  page: number;
+  cat: string;
+  search: string;
+}) {
+  const { posts, count } = await getData(page, cat, search);
   const POST_PER_PAGE = 6;
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
@@ -35,7 +44,7 @@ async function ListArticle({ page, cat }: { page: number; cat: string }) {
             catSlug: string;
             createdAt: string;
             cat: { title: string };
-            user: { name: string, image: string, tagline: string};
+            user: { name: string; image: string; tagline: string };
           }) => (
             <CardArticle key={item.id} item={item} />
           )
