@@ -5,7 +5,7 @@ import React from "react";
 function CardCarousel({ item }: { item: any }) {
   return (
     <Link href={`/article/${item.slug}`} className="cursor-pointer group">
-      <div className="relative h-[460px] rounded-md flex items-end justify-start">
+      <div className="relative h-[460px] rounded-md overflow-hidden flex items-end justify-start">
         {item.img && (
           <Image
             src={item.img}

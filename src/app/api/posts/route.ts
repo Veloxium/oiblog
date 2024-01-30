@@ -27,7 +27,7 @@ export const GET = async (req: NextRequest) => {
             user: {
                 select: {
                     name: true,
-                    email: true,
+                    tagline: true,
                     image: true,
                 },
             },
@@ -87,7 +87,7 @@ export const POST = async (req: NextRequest) => {
         });
 
         return new NextResponse(JSON.stringify({
-            message: 'Post created successfully'
+            message: 'Artikel berhasil ditambahkan'
         }));
     } catch (error) {
         console.error(error);

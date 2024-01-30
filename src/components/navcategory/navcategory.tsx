@@ -1,4 +1,3 @@
-"use client";
 import { cn } from "@/lib/utils";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import React, { useEffect, useState } from "react";
@@ -11,21 +10,8 @@ const getData = async () => {
   return res.json();
 };
 
-function NavCategory() {
-  const [dataCategories, setDataCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getData();
-        setDataCategories(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+async function NavCategory() {
+  const dataCategories = await getData();
 
   return (
     <>

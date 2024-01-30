@@ -9,10 +9,32 @@ export const GET = async (req: NextRequest, { params }: { params: { slug: string
                 slug,
             },
             include: {
-                cat: true,
-                user: true,
+                cat: {
+                    select: {
+                        title: true,
+                    },
+                },
+                user: {
+                    select: {
+                        name: true,
+                        tagline: true,
+                        image: true,
+                    },
+                }
             },
         });
+        if (!post) {
+            return new NextResponse(JSON.stringify({ message: "Post not found" }), { status: 404 });
+        }
+        await prisma.post.update({
+            where: {
+                slug,
+            },
+            data: {
+                views: post.views + 1,
+            },
+        });
+
         return new NextResponse(JSON.stringify({ post }));
     } catch (error) {
         console.error(error);

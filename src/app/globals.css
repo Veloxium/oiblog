@@ -100,9 +100,12 @@ p {
 }
 .ql-editor.ql-blank::before {
   @apply text-foreground !important;
+  @apply opacity-50 !important;
+  @apply text-base !important;
 }
 .ql-editor {
   min-height: 200px !important;
+  @apply text-base !important;
 }
 .minh {
   min-height: calc(100vh - 170px);

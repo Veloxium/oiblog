@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 export default function Home({ searchParams }: { searchParams: any }) {
   const page = parseInt(searchParams?.page as string) || 1;
-  const cat = searchParams?.cat as string || "";
+  const cat = (searchParams?.cat as string) || "";
 
   return (
     <main>

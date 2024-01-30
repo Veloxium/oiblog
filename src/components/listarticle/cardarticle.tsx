@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Card,
@@ -18,7 +18,10 @@ function CardArticle({ item }: { item: any }) {
     navigator.clipboard.writeText(`http://localhost:3000/article/${url}`);
   };
   return (
-    <Card key={item.id} className="group flex flex-col justify-between">
+    <Card
+      key={item.id}
+      className="group flex flex-col justify-between shadow-md m-2"
+    >
       <div>
         <div className="relative w-full h-40 overflow-hidden rounded-md">
           {item.img && (
@@ -33,7 +36,7 @@ function CardArticle({ item }: { item: any }) {
         </div>
         <CardHeader>
           <CardDescription className="capitalize">
-            {item.cat.title} | {item.createdAt.slice(0, 10)}
+            {item.cat?.title} | {item.createdAt.slice(0, 10)}
           </CardDescription>
           <CardTitle>{item.title}</CardTitle>
         </CardHeader>
@@ -51,7 +54,7 @@ function CardArticle({ item }: { item: any }) {
               <Button variant={"outline"}>Selengkapnya</Button>
             </Link>
             <Button
-              variant={"outline"}
+              variant={"default"}
               onClick={() => copyToClipboard(item.slug)}
             >
               <svg
@@ -71,7 +74,13 @@ function CardArticle({ item }: { item: any }) {
             </Button>
           </div>
         </CardContent>
-        <CardFooter><ProfileTag email={item.user.email} name={item.user.name} image={item.user.image}/></CardFooter>
+        <CardFooter>
+          <ProfileTag
+            tagline={item.user.tagline}
+            name={item.user.name}
+            image={item.user.image}
+          />
+        </CardFooter>
       </div>
     </Card>
   );

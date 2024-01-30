@@ -16,31 +16,37 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 // const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
 function BuatPage() {
   const [value, setValue] = React.useState("");
   const { status } = useSession();
   const [image, setImage] = React.useState("");
-  const [file, setFile] = React.useState<File | null>(null);
   const router = useRouter();
+  const [selectTopik, setSelectTopik] = React.useState("");
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     try {
       const formData = new FormData(e.target as HTMLFormElement);
       const titleforslug = formData.get("title") as string;
-      const slug = titleforslug.substring(0, 13).replace(/\s/g, "-").toLocaleLowerCase();
+      const slug = titleforslug
+        .substring(0, 13)
+        .replace(/\s/g, "-")
+        .toLocaleLowerCase();
       formData.append("desc", value);
-      // formData.append("image", file as File);
       formData.append("slug", slug);
-      // const formDataObject = Object.fromEntries(formData.entries());
       const res = await fetch("/api/posts", {
         method: "POST",
         body: formData,
       });
-      const data = await res.json();
-      console.log(data);
-      console.log(formData);
+      const { message } = await res.json();
+      toast.info(message, {
+        position: "top-right",
+      });
+      (e.target as HTMLFormElement).reset();
+      setValue("");
+      setSelectTopik("");
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +68,11 @@ function BuatPage() {
           <p className="-mb-2 font-bold">Judul</p>
           <div className="flex flex-col md:flex-row gap-4">
             <Input type="text" name="title" placeholder="Judul Artikel" />
-            <Select name="catSlug">
+            <Select
+              name="catSlug"
+              value={selectTopik}
+              onValueChange={(value) => setSelectTopik(value)}
+            >
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Pilih Topik" />
               </SelectTrigger>
@@ -95,7 +105,6 @@ function BuatPage() {
                 if (e.target.files) {
                   const file = e.target.files[0];
                   setImage(URL.createObjectURL(file));
-                  setFile(file);
                 }
               }}
             />

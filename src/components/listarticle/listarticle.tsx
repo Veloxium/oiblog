@@ -17,7 +17,6 @@ const getData = async (page: number, cat: string) => {
 
 async function ListArticle({ page, cat }: { page: number; cat: string }) {
   const { posts, count } = await getData(page, cat);
-  console.log(posts)
   const POST_PER_PAGE = 6;
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
@@ -34,10 +33,9 @@ async function ListArticle({ page, cat }: { page: number; cat: string }) {
             img: string | null;
             views: number;
             catSlug: string;
-            userEmail: string;
             createdAt: string;
             cat: { title: string };
-            user: { name: string, image: string, email: string};
+            user: { name: string, image: string, tagline: string};
           }) => (
             <CardArticle key={item.id} item={item} />
           )

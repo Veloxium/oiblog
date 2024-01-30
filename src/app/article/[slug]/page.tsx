@@ -21,9 +21,9 @@ async function DetailPage({ params }: { params: { slug: string } }) {
   return (
     <main>
       <div className="w-full flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-2/3 flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <p className="font-bold text-lg capitalize">{post.cat.title}</p>
-          <div className="relative w-full h-80">
+          <div className="relative w-full h-96">
             {post.img && (
               <Image
                 src={post.img}
@@ -37,8 +37,8 @@ async function DetailPage({ params }: { params: { slug: string } }) {
           <DetailTag post={post} />
           <div>
             <h1 className="text-4xl font-bold">{post.title}</h1>
-            <div className="pt-4 pb-8">
-              <ProfileTag email={post.user.email} name={post.user.name} image={post.user.image} />
+            <div className="mt-8 mb-10">
+              <ProfileTag tagline={post.user.tagline} name={post.user.name} image={post.user.image} />
             </div>
             <div
               dangerouslySetInnerHTML={{ __html: post.desc }}
@@ -49,7 +49,7 @@ async function DetailPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/3 flex flex-col gap-4">
+        <div className="w-full md:w-[400px] flex flex-col gap-4">
           <p className="font-bold text-lg">Artikel Lainnya</p>
           <div>
             <ListArticleDetail />

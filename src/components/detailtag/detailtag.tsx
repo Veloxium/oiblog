@@ -1,5 +1,6 @@
 "use client";
 
+import { dateFormat } from "@/utils/dateformat";
 import { Button } from "../ui/button";
 
 function DetailTag({ post }: { post: any }) {
@@ -10,7 +11,7 @@ function DetailTag({ post }: { post: any }) {
   return (
     <div className="flex justify-between items-center">
       <p className="text-sm p-2 bg-slate-100 rounded-md">
-        {post.createdAt.slice(0, 10)}
+        {dateFormat(post.createdAt.slice(0, 10))}
       </p>
       <div className="flex gap-2">
         <div className="flex items-center gap-2 px-4 bg-slate-100 rounded-md">
@@ -35,7 +36,11 @@ function DetailTag({ post }: { post: any }) {
           </svg>
           <p className="-mt-0 text-sm">{post.views}</p>
         </div>
-        <Button variant={"secondary"} size={"icon"} onClick={() => copyToClipboard(post.slug)}>
+        <Button
+          variant={"secondary"}
+          size={"icon"}
+          onClick={() => copyToClipboard(post.slug)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -21,7 +21,6 @@ export const GET = async (req: NextRequest) => {
                 },
             },
         });
-
         return new NextResponse(JSON.stringify({ posts }));
     } catch (error) {
         console.error(error);

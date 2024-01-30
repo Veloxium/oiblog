@@ -13,7 +13,6 @@ import Image from "next/image";
 const getData = async () => {
   const res = await fetch(`http://localhost:3000/api/posts/newest`, {
     method: "GET",
-    cache: "no-cache",
   });
   if (!res.ok) {
     throw new Error(res.statusText);
@@ -42,7 +41,7 @@ async function ListArticleDetail() {
           <Link href={`/article/${item.slug}`}>
             <Card
               key={item.id}
-              className="group flex flex-col justify-between cursor-pointer"
+              className="group flex flex-col justify-between cursor-pointer hover:bg-slate-100"
             >
               <div>
                 <div className="relative w-full h-36 overflow-hidden rounded-md">

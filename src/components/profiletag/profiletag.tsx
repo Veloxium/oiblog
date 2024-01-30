@@ -1,20 +1,9 @@
 import Image from "next/image";
 
-// const getData = async (email: string) => {
-//   const res = await fetch(`http://localhost:3000/api/users/${email}`, {
-//     method: "GET",
-//   });
-//   if (!res.ok) {
-//     throw new Error(res.statusText);
-//   }
-//   return res.json();
-// };
-
-async function ProfileTag({ email, image, name }: { email: string; image: string; name: string}) {
-  // const { user } = await getData(email);
+async function ProfileTag({ tagline, image, name }: { tagline: string; image: string; name: string}) {
   return (
     <div className="flex items-center gap-2">
-      <div className="relative w-8 h-8 rounded-full">
+      <div className="relative w-10 h-10 rounded-full">
         {image && (
           <Image
             src={image}
@@ -25,8 +14,8 @@ async function ProfileTag({ email, image, name }: { email: string; image: string
         )}
       </div>
       <div className="flex flex-col">
-        <p className="-mt-0 text-xs">{name}</p>
-        <p className="-mt-0 text-xs text-slate-400">{email}</p>
+        <p className="-mt-0 text-md">{name}</p>
+        <p className="-mt-0 text-sm text-slate-400">{tagline}</p>
       </div>
     </div>
   );
