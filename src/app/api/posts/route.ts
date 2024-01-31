@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
         take: POST_PER_PAGE,
         skip: POST_PER_PAGE * (Number(page || 1) - 1),
         where: {
-            ...(cat && { catSlug: cat } as any), 
+            ...(cat && { catSlug: cat } as any),
             ...(search && { title: { contains: search, mode: 'insensitive' } }),
         },
         include: {
@@ -25,22 +25,19 @@ export const GET = async (req: NextRequest) => {
                     title: true,
                 },
             },
-            user: {
-                select: {
-                    name: true,
-                    tagline: true,
-                    image: true,
-                },
-            },
         },
-
     }
 
     try {
         const [posts, count] = await prisma.$transaction(
             [
                 prisma.post.findMany(
-                    query
+                    {
+                        ...query,
+                        orderBy: {
+                            createdAt: "desc",
+                        },
+                    }
                 ),
                 prisma.post.count({ where: query.where }),
             ]
@@ -55,7 +52,10 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
     const body = await req.formData();
     const session = await getAuthSession();
-    const userEmail = session?.user?.email || "";
+    if (!session) {
+        return new NextResponse(JSON.stringify({ message: 'Not authorized', status: 401 }));
+    }
+    const userEmail = session.user?.email || "";
     const uploadDir = path.join(process.cwd(), 'public', 'uploads');
     const ensureUploadDir = async () => {
         try {
@@ -88,7 +88,7 @@ export const POST = async (req: NextRequest) => {
         });
 
         return new NextResponse(JSON.stringify({
-            message: 'Artikel berhasil ditambahkan'
+            message: 'Blog berhasil ditambahkan'
         }));
     } catch (error) {
         console.error(error);

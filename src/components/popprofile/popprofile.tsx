@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Popover,
   PopoverContent,
@@ -16,12 +18,46 @@ import {
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
 import { Button, buttonVariants } from "../ui/button";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { signOut, useSession } from "next-auth/react";
+import { Input } from "../ui/input";
+import useSWR from "swr";
+import { toast } from "sonner";
+import { useState } from "react";
+
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message);
+  }
+  return data;
+};
 
 function PopProfile() {
-  const { data } = useSession();
+  const [tagline, setTagline] = useState("");
+  const email = useSession().data?.user?.email;
+  if (!email) return null;
+  const { data, mutate, isLoading } = useSWR(
+    `http://localhost:3000/api/users/${email}`,
+    fetcher
+  );
+
+  const editTagline = async () => {
+    const res = await fetch(`http://localhost:3000/api/users/${email}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        tagline,
+      }),
+    });
+    const { message } = await res.json();
+    mutate();
+    toast.success(message, {
+      position: "top-right",
+    });
+    mutate();
+  };
+
   return (
     <Popover>
       <PopoverTrigger
@@ -45,10 +81,9 @@ function PopProfile() {
           />
         </svg>
         <h5>Profile</h5>
-        {/* </Button> */}
       </PopoverTrigger>
       <PopoverContent>
-        <div className="flex flex-col">
+        <div className="flex flex-col pt-2">
           <div className="flex gap-4 items-center">
             <div className="relative w-12 h-12 rounded-full aspect-square">
               {data?.user?.image && (
@@ -66,17 +101,43 @@ function PopProfile() {
               <h5 className="text-sm text-slate-400">{data?.user?.email}</h5>
             </div>
           </div>
+
           <div className="flex flex-col gap-2 mt-6">
-            <Link href={"/editprofile"}>
-              <Button variant={"outline"} className="w-full">
-                Edit Profile
-              </Button>
-            </Link>
-            <Link href={"/yourartikel"}>
-              <Button variant={"outline"} className="w-full">
-                Your Artikel
-              </Button>
-            </Link>
+            <div className="flex justify-center p-2 rounded-md bg-slate-100 dark:bg-slate-800">
+              <p className="mt-0 text-sm">{data?.user.tagline}</p>
+            </div>
+            <AlertDialog>
+              <AlertDialogTrigger
+                className={cn(buttonVariants({ variant: "outline" }))}
+              >
+                Edit Tagline
+              </AlertDialogTrigger>
+              <AlertDialogContent className="w-[90%] rounded-md">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Edit Tagline</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Tagline akan ditampilkan di halaman Blog Ku.
+                    <Input
+                      type="text"
+                      name="title"
+                      placeholder="Tagline"
+                      onChange={(e) => setTagline(e.target.value)}
+                      className="mt-2 text-foreground"
+                      defaultValue={data?.user.tagline}
+                    />
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Batal</AlertDialogCancel>
+                  <AlertDialogAction
+                    className={cn(buttonVariants({ variant: "default" }))}
+                    onClick={() => editTagline()}
+                  >
+                    Simpan
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <AlertDialog>
               <AlertDialogTrigger
                 className={cn(buttonVariants({ variant: "default" }))}
@@ -95,8 +156,11 @@ function PopProfile() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Batal</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => signOut()} className="p-0">
-                    <Button variant={"destructive"} className="w-full">Lanjutkan</Button>
+                  <AlertDialogAction
+                    onClick={() => signOut()}
+                    className={cn(buttonVariants({ variant: "destructive" }))}
+                  >
+                    Lanjutkan
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

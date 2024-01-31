@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ProfileTag from "../profiletag/profiletag";
 import { toast } from "sonner";
+import { dateFormat } from "@/utils/dateformat";
 
 function CardArticle({ item }: { item: any }) {
   const copyToClipboard = (url: string) => {
@@ -37,20 +38,20 @@ function CardArticle({ item }: { item: any }) {
         </div>
         <CardHeader>
           <CardDescription className="capitalize">
-            {item.cat?.title} | {item.createdAt.slice(0, 10)}
+            {item.cat?.title} | {dateFormat(item.createdAt.slice(0, 10))}
           </CardDescription>
-          <CardTitle>{item.title}</CardTitle>
+          <CardTitle className="leading-normal">{item.title}</CardTitle>
         </CardHeader>
         <CardContent>
           <div
-            className="-mt-3 line-clamp-4 text-justify"
+            className="-mt-5 line-clamp-3"
             dangerouslySetInnerHTML={{ __html: item.desc }}
           />
         </CardContent>
       </div>
       <div>
-        <CardContent>
-          <div className="flex justify-between items-center">
+        <CardFooter>
+          <div className="flex w-full justify-between items-center">
             <Link href={`/article/${item.slug}`}>
               <Button variant={"outline"} className="bg-slate-50">
                 Selengkapnya
@@ -81,13 +82,6 @@ function CardArticle({ item }: { item: any }) {
               </svg>
             </Button>
           </div>
-        </CardContent>
-        <CardFooter>
-          <ProfileTag
-            tagline={item.user.tagline}
-            name={item.user.name}
-            image={item.user.image}
-          />
         </CardFooter>
       </div>
     </Card>

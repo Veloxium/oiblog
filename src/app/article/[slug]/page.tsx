@@ -2,7 +2,12 @@ import Comment from "@/components/comment/comment";
 import DetailTag from "@/components/detailtag/detailtag";
 import ListArticleDetail from "@/components/listarticle/listarticledetail";
 import ProfileTag from "@/components/profiletag/profiletag";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Detail Blog",
+};
 
 const getData = async (slug: string) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
@@ -50,7 +55,7 @@ async function DetailPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
         <div className="w-full md:w-[400px] flex flex-col gap-4">
-          <p className="font-bold text-lg">Artikel Lainnya</p>
+          <p className="font-bold text-lg">Blog Lainnya</p>
           <div>
             <ListArticleDetail />
           </div>

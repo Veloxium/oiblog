@@ -17,6 +17,8 @@ import { ModeToggle } from "../dropdowntheme/dropdowntheme";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import NavigationUser from "../navigationuser/navigationuser";
+import { useSession } from "next-auth/react";
+import { stat } from "fs/promises";
 
 export const kategori: { title: string; href: string }[] = [
   {
@@ -54,6 +56,7 @@ export const kategori: { title: string; href: string }[] = [
 ];
 
 function Navbar() {
+  const { status } = useSession();
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const [topik, setTopik] = React.useState(false);
@@ -122,10 +125,21 @@ function Navbar() {
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
-                      Buat Artikel
+                      Buat Blog
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+                {status === "authenticated" && (
+                  <NavigationMenuItem>
+                    <Link href="/blogku" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Blog Ku
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                )}
                 <NavigationMenuItem>
                   <Link href="/tentang" legacyBehavior passHref>
                     <NavigationMenuLink
@@ -222,9 +236,22 @@ function Navbar() {
                     setOpen(false);
                   }}
                 >
-                  Buat Artikel
+                  Buat Blog
                 </Button>
               </Link>
+              {status === "authenticated" && (
+                <Link href={"/blogku"} className="w-full">
+                  <Button
+                    variant={"secondary"}
+                    className="w-full h-14"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    Blog Ku
+                  </Button>
+                </Link>
+              )}
               <Link href={"/"} className="w-full">
                 <Button
                   variant={"secondary"}

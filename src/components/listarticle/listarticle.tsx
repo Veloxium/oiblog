@@ -51,7 +51,7 @@ async function ListArticle({
       </div>
       {posts == "" && (
         <div className="flex justify-center items-center h-40">
-          Tidak ada artikel
+          Tidak ada Blog
         </div>
       )}
       <div className="mt-8">

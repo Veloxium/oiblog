@@ -50,7 +50,7 @@ async function ListArticleDetail() {
                       src={
                        item.img
                       }
-                      alt="card artikel"
+                      alt="card blog"
                       className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
                       fill
                     />

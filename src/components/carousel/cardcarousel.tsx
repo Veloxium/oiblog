@@ -1,3 +1,4 @@
+import { dateFormat } from "@/utils/dateformat";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -21,7 +22,7 @@ function CardCarousel({ item }: { item: any }) {
         "
         >
           <p className="text-sm text-white capitalize">
-            {item.cat.title} | {item.createdAt.slice(0, 10)}
+            {item.cat.title} | {dateFormat(item.createdAt.slice(0, 10))}
           </p>
           <p className=" text-white font-bold text-3xl">{item.title}</p>
           <div

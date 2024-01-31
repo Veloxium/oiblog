@@ -18,11 +18,11 @@ function SearchBar() {
   };
   return (
     <div className="flex justify-between items-start my-4">
-      <h1 className="text-xl font-normal">Artikel Terbaru</h1>
+      <h1 className="text-xl font-normal">Blog Terbaru</h1>
       <div className="flex w-full max-w-xs items-center space-x-2">
         <Input
           type="email"
-          placeholder="Judul Artikel"
+          placeholder="Judul Blog"
           value={search}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSearch(e.target.value.toLowerCase())
