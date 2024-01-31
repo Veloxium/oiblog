@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-async function ProfileTag({ tagline, image, name }: { tagline: string; image: string; name: string}) {
+function ProfileTag({ tagline, image, name }: { tagline: string; image: string; name: string}) {
   return (
     <div className="flex items-center gap-2">
       <div className="relative w-10 h-10 rounded-full">

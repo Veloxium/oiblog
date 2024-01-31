@@ -15,9 +15,8 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "../dropdowntheme/dropdowntheme";
 import { Button } from "../ui/button";
-import PopProfile from "../popprofile/popprofile";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
+import NavigationUser from "../navigationuser/navigationuser";
 
 export const kategori: { title: string; href: string }[] = [
   {
@@ -55,13 +54,12 @@ export const kategori: { title: string; href: string }[] = [
 ];
 
 function Navbar() {
-  const { status } = useSession();
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const [topik, setTopik] = React.useState(false);
   return (
-    <div>
-      <nav className="sticky top-0 flex justify-between items-center pt-8 pb-4 mb-4 dark:bg-zinc-950 bg-white z-20">
+    <div className="fixed w-full justify-center z-50">
+      <nav className="w-full top-0 flex justify-between items-center pt-8 pb-4 mb-4 dark:bg-zinc-950 bg-white z-20">
         <div className="flex gap-2 items-center">
           {pathname !== "/login" && (
             <Button
@@ -143,26 +141,7 @@ function Navbar() {
         )}
         <div className="flex gap-4">
           <ModeToggle />
-          {status === "authenticated" ? (
-            <div>
-              <PopProfile />
-            </div>
-          ) : (
-            pathname !== "/login" && (
-              <div className="flex gap-2 md:gap-4">
-                <Link href={"/login"}>
-                  <Button variant={"outline"}>
-                    <h5>Log in</h5>
-                  </Button>
-                </Link>
-                <Link href={"/login"}>
-                  <Button variant={"default"}>
-                    <h5>Sign up</h5>
-                  </Button>
-                </Link>
-              </div>
-            )
-          )}
+          <NavigationUser />
         </div>
       </nav>
       {open && (

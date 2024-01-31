@@ -12,9 +12,10 @@ function SearchBar() {
     if (search === "") {
       router.push("/");
       return;
-    };
+    }
     router.push(`/?search=${search}`);
-  }
+    return setSearch("");
+  };
   return (
     <div className="flex justify-between items-start my-4">
       <h1 className="text-xl font-normal">Artikel Terbaru</h1>

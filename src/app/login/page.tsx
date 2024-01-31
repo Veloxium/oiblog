@@ -2,18 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 function LoginPage() {
   const { status } = useSession();
-  const router = useRouter();
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.replace("/");
-    }
-  }, [status, router]);
-
+  if (status === "authenticated") {
+    return redirect("/");
+  }
   return (
     <main>
       <div className="minh flex items-center justify-center">

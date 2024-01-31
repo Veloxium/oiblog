@@ -79,7 +79,7 @@ function PopProfile() {
             </Link>
             <AlertDialog>
               <AlertDialogTrigger
-                className={cn(buttonVariants({ variant: "destructive" }))}
+                className={cn(buttonVariants({ variant: "default" }))}
               >
                 Logout
               </AlertDialogTrigger>
@@ -95,8 +95,8 @@ function PopProfile() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Batal</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => signOut()}>
-                    Lanjutkan
+                  <AlertDialogAction onClick={() => signOut()} className="p-0">
+                    <Button variant={"destructive"} className="w-full">Lanjutkan</Button>
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

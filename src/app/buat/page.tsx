@@ -15,7 +15,7 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { toast } from "sonner";
 // const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
@@ -23,7 +23,6 @@ function BuatPage() {
   const [value, setValue] = React.useState("");
   const { status } = useSession();
   const [image, setImage] = React.useState("");
-  const router = useRouter();
   const [selectTopik, setSelectTopik] = React.useState("");
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -57,7 +56,7 @@ function BuatPage() {
       <main className="minh flex items-center justify-center">Loading...</main>
     );
   if (status === "unauthenticated") {
-    return router.push("/login");
+    return redirect("/login");
   }
 
   return (

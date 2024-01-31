@@ -12,6 +12,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ProfileTag from "../profiletag/profiletag";
+import { toast } from "sonner";
 
 function CardArticle({ item }: { item: any }) {
   const copyToClipboard = (url: string) => {
@@ -26,7 +27,7 @@ function CardArticle({ item }: { item: any }) {
         <div className="relative w-full h-40 overflow-hidden rounded-md">
           {item.img && (
             <Image
-              src={item.img}
+              src={`http:/localhost:3000${item.img}`}
               alt="carousel"
               className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               priority
@@ -51,11 +52,18 @@ function CardArticle({ item }: { item: any }) {
         <CardContent>
           <div className="flex justify-between items-center">
             <Link href={`/article/${item.slug}`}>
-              <Button variant={"outline"} className="bg-slate-50">Selengkapnya</Button>
+              <Button variant={"outline"} className="bg-slate-50">
+                Selengkapnya
+              </Button>
             </Link>
             <Button
               variant={"default"}
-              onClick={() => copyToClipboard(item.slug)}
+              onClick={() => {
+                copyToClipboard(item.slug);
+                toast.success("Link berhasil disalin", {
+                  position: "top-right",
+                });
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -15,7 +15,6 @@ const getData = async (page: number, cat: string, search: string) => {
   return res.json();
 };
 
-
 async function ListArticle({
   page,
   cat,
