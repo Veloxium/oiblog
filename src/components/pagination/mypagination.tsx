@@ -34,7 +34,7 @@ function MyPagination({
               className="gap-1 pr-2.5 cursor-not-allowed"
             >
               <ChevronLeft className="h-4 w-4" />
-              Sebelumnya
+              Prev
             </Button>
           )}
         </PaginationItem>
@@ -67,7 +67,7 @@ function MyPagination({
               variant={"ghost"}
               className="gap-1 pr-2.5 cursor-not-allowed"
             >
-              Selanjutnya
+              Next
               <ChevronRight className="h-4 w-4" />
             </Button>
           )}

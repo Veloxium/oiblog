@@ -22,7 +22,7 @@ function CardArticle({ item }: { item: any }) {
   return (
     <Card
       key={item.id}
-      className="group flex flex-col justify-between shadow-md m-2"
+      className="group flex flex-col justify-between shadow-md"
     >
       <div>
         <div className="relative w-full h-40 overflow-hidden rounded-md">

@@ -39,27 +39,27 @@ export const DELETE = async (req: NextRequest) => {
     const id = searchParams.get("id");
     if (!id) return new NextResponse(JSON.stringify({ message: "Something went wrong" }));
     const session = await getAuthSession();
-    if (!session?.user?.email) {
+    if (!session) {
         return new NextResponse(JSON.stringify({ message: 'Not authorized', status: 401 }));
     }
     const userEmail = session.user.email;
     try {
-        const postData = await prisma.post.findUnique({
-            where: {
-                id: id,
-                userEmail: userEmail,
-            },
-        });
+        // const postData = await prisma.post.findUnique({
+        //     where: {
+        //         id: id,
+        //         userEmail: userEmail!,
+        //     },
+        // });
 
-        if (!postData || !postData.img) {
-            return new NextResponse(JSON.stringify({ message: "Post not found or not authorized" }));
-        }
+        // if (!postData || !postData.img) {
+        //     return new NextResponse(JSON.stringify({ message: "Post not found or not authorized" }));
+        // }
 
         await prisma.post.delete(
             {
                 where: {
                     id: id,
-                    userEmail: userEmail,
+                    userEmail: userEmail!,
                 },
             }
         );

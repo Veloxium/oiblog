@@ -53,6 +53,9 @@ export const DELETE = async (req: NextRequest) => {
             await prisma.user.delete({
                 where: {
                     email: user,
+                },
+                include:{
+                    Post: true
                 }
             });
             return new NextResponse(JSON.stringify({ message: "User berhasil dihapus" }));
