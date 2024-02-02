@@ -14,11 +14,11 @@ const getData = async () => {
 async function MyCarousel() {
   const { posts } = await getData();
   return (
-    <div className="minh">
+    <div>
       {posts ? (
         <ListCarousel items={posts} />
       ) : (
-        <main className="py-20 flex items-center justify-center">
+        <main className="py-20 flex items-center justify-center minh">
           Loading...
         </main>
       )}
