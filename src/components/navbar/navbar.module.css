@@ -1,8 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
-.title{
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem /* 24px */;
+    line-height: 2rem /* 32px */;
     line-height: 2rem;
     font-weight: bold;
     display: inline-flex;
@@ -10,4 +24,5 @@
     justify-content: center;
     padding-left: 4px;
     padding-right: 4px;
+  }
 }
