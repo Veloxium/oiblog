@@ -12,9 +12,11 @@ const getData = async () => {
 };
 
 async function MyCarousel() {
-  const {posts} = await getData();
+  const { posts } = await getData();
   return (
-    <ListCarousel items = {posts}/>
+    <div>
+      <ListCarousel items={posts} />
+    </div>
   );
 }
 

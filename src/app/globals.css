@@ -76,9 +76,11 @@
   }
 }
 
-main,
+main{
+  @apply max-w-6xl mx-auto px-4;
+}
 nav {
-  @apply max-w-6xl mx-auto px-10;
+  @apply max-w-6xl mx-auto px-4;
 }
 
 p {
@@ -109,4 +111,10 @@ p {
 }
 .minh {
   min-height: calc(100vh - 170px);
+}
+.btn-crl{
+  opacity: 0.5 !important;
+}
+.btn-crl:hover{
+  opacity: 1 !important;
 }

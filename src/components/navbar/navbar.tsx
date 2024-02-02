@@ -90,7 +90,7 @@ function Navbar() {
             </Button>
           )}
           <Link href={"/"} className={styles.title}>
-            Oi Blog .
+            Oi Blog
           </Link>
         </div>
         {pathname !== "/login" && (
@@ -252,7 +252,7 @@ function Navbar() {
                   </Button>
                 </Link>
               )}
-              <Link href={"/"} className="w-full">
+              <Link href={"/tentang"} className="w-full">
                 <Button
                   variant={"secondary"}
                   className="w-full h-14"

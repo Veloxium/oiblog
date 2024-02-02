@@ -29,8 +29,8 @@ function ListCarousel({ items }: { items: any }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="btn-crl" />
+      <CarouselNext className="btn-crl" />
     </Carousel>
   );
 }
