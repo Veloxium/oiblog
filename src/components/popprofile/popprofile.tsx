@@ -44,7 +44,7 @@ function PopProfile() {
   );
 
   const editTagline = async () => {
-    const res = await fetch(`http://localhost:3000/api/users/${user.email}`, {
+    const res = await fetch(`http://localhost:3000/api/users/${user?.user.email}`, {
       method: "PUT",
       body: JSON.stringify({
         tagline,
@@ -138,7 +138,7 @@ function PopProfile() {
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
-            {user.role === "admin" && (
+            {user?.user.role === "admin" && (
               <Button
                 variant={"outline"}
                 className="w-full text-blue-600 dark:text-blue-400"
