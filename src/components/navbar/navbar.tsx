@@ -89,7 +89,7 @@ function Navbar() {
               </svg>
             </Button>
           )}
-          <Link href={"/"} className={styles.title}>
+          <Link href={"/"} className={styles.title + "md:text-xl"}>
             Oi Blog .
           </Link>
         </div>
