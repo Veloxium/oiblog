@@ -32,6 +32,7 @@ function BlogForm() {
   const [image, setImage] = React.useState("");
   const [file, setFile] = React.useState<File | null>(null);
   const [imgUrl, setImgUrl] = React.useState("");
+  const [isDone, setIsDone] = React.useState(true);
   const [selectTopik, setSelectTopik] = React.useState("");
   const { status } = useSession({
     required: true,
@@ -39,7 +40,8 @@ function BlogForm() {
 
   useEffect(() => {
     const upload = () => {
-      const name = `${Date.now() + file!.name}`;
+      setIsDone(false);
+      const name = `${Date.now() + file!.name.slice(0, 6).replace(/\s/g, "")}`;
       const storageRef = ref(storage, name);
       const uploadTask = uploadBytesResumable(storageRef, file!);
       uploadTask.on(
@@ -63,6 +65,7 @@ function BlogForm() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImgUrl(downloadURL);
+            setIsDone(true);
           });
         }
       );
@@ -187,7 +190,9 @@ function BlogForm() {
             }}
           />
         </div>
-        <Button type="submit">Post Blog</Button>
+          <Button type="submit" disabled={!isDone}>{
+            isDone ? "Post Blog" : "Tunggu..."
+          }</Button>
       </form>
     </div>
   );

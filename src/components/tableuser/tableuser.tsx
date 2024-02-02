@@ -41,7 +41,6 @@ function TableUser() {
     `https://oiblog.vercel.app/api/admin`,
     fetcher
   );
-  console.log(data);
   if (isLoading) {
     return (
       <main className="py-20 flex items-center justify-center">Loading...</main>
@@ -56,7 +55,7 @@ function TableUser() {
       }
     );
     const data = await res.json();
-
+    console.log(data)
     if (!res.ok) {
       throw new Error(data.message);
     }
@@ -111,6 +110,7 @@ function TableUser() {
                   <AlertDialog>
                     <AlertDialogTrigger
                       className={cn(buttonVariants({ variant: "destructive" }))}
+                      disabled={user.role === "admin"}
                     >
                       Delete
                     </AlertDialogTrigger>

@@ -35,6 +35,12 @@ export const DELETE = async (req: NextRequest) => {
     const user = searchParams.get("user");
     const post = searchParams.get("post");
 
+    if (!user && !post) {
+        return new NextResponse(JSON.stringify({ message: "Invalid request: User or Post parameter is required" }), {
+            status: 400
+        });
+    }
+
     const session = await getAuthSession();
 
     if (!session) {
@@ -49,18 +55,26 @@ export const DELETE = async (req: NextRequest) => {
                 status: 401
             });
         }
-        if (user && user !== "") {
-            await prisma.user.delete({
-                where: {
-                    email: user,
-                },
-                include:{
-                    Post: true
-                }
-            });
+
+        if (user) {
+            await prisma.$transaction(
+                [
+                    prisma.post.deleteMany({
+                        where: {
+                            userEmail: user,
+                        }
+                    }),
+                    prisma.user.delete({
+                        where: {
+                            email: user,
+                        }
+                    }),
+                ]
+            );
             return new NextResponse(JSON.stringify({ message: "User berhasil dihapus" }));
         }
-        if (post && post !== "") {
+
+        if (post) {
             await prisma.post.delete({
                 where: {
                     id: post,
@@ -70,6 +84,6 @@ export const DELETE = async (req: NextRequest) => {
         }
     } catch (error) {
         console.error(error);
-        return new NextResponse(JSON.stringify({ message: "Something went wrong" }));
+        return new NextResponse(JSON.stringify({ message: `Error: ${error || "Something went wrong"}` }));
     }
 };

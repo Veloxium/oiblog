@@ -34,6 +34,7 @@ function EditBlogForm({ data }: { data: any }) {
   const [image, setImage] = React.useState(data.img);
   const [file, setFile] = React.useState<File | null>(null);
   const [imgUrl, setImgUrl] = React.useState("");
+  const [isDone, setIsDone] = React.useState(true);
   const [selectTopik, setSelectTopik] = React.useState(data.catSlug);
   const { status } = useSession({
     required: true,
@@ -43,7 +44,8 @@ function EditBlogForm({ data }: { data: any }) {
 
    useEffect(() => {
      const upload = () => {
-       const name = `${Date.now() + file!.name}`;
+        setIsDone(false);
+       const name = `${Date.now() + file!.name.slice(0, 6).replace(/\s/g, "")}`;
        const storageRef = ref(storage, name);
        const uploadTask = uploadBytesResumable(storageRef, file!);
        uploadTask.on(
@@ -67,6 +69,7 @@ function EditBlogForm({ data }: { data: any }) {
          () => {
            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
              setImgUrl(downloadURL);
+              setIsDone(true);
            });
          }
        );
@@ -192,7 +195,9 @@ function EditBlogForm({ data }: { data: any }) {
             }}
           />
         </div>
-        <Button type="submit">Update Blog</Button>
+        <Button type="submit" disabled={!isDone}>
+          {isDone ? "Post Blog" : "Tunggu..."}
+        </Button>
       </form>
     </div>
   );
