@@ -28,7 +28,7 @@ function CardArticle({ item }: { item: any }) {
         <div className="relative w-full h-40 overflow-hidden rounded-md">
           {item.img && (
             <Image
-              src={`http:/localhost:3000${item.img}`}
+              src={item.img}
               alt="carousel"
               className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
               priority
