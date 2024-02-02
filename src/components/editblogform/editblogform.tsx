@@ -110,16 +110,15 @@ function EditBlogForm({ data }: { data: any }) {
       formData.append("slug", slug);
       formData.append("img", imgUrl);
       const dataObject = Object.fromEntries(formData.entries());
-      console.log(dataObject);
-      // const res = await fetch("/api/posts", {
-      //   method: "POST",
-      //   body: JSON.stringify(dataObject),
-      // });
-      // const { message } = await res.json();
-      // toast.info(message, {
-      //   position: "top-right",
-      // });
-      // router.push("/blogku");
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify(dataObject),
+      });
+      const { message } = await res.json();
+      toast.info(message, {
+        position: "top-right",
+      });
+      router.push("/blogku");
     } catch (error) {
       console.log(error);
     }
