@@ -18,6 +18,6 @@ Oi Blog adalah platform blog yang memberikan kebebasan kepada pengguna untuk mem
 - **Fitur Komentar**: Interaksi dengan pembaca melalui fitur komentar yang mendukung diskusi.
 
 Kontak
-Jika Anda memiliki pertanyaan atau masukan, silakan hubungi saya di [(https://www.instagram.com/mchfrnnda_/)https://www.instagram.com/mchfrnnda_/].
+Jika Anda memiliki pertanyaan atau masukan, silakan hubungi saya di (https://www.instagram.com/mchfrnnda_/)https://www.instagram.com/mchfrnnda_/.
 
 Happy Blogging! 📝✨
