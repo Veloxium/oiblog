@@ -2,7 +2,8 @@
 
 Selamat datang di Oi Blog - Platform Blog Serbaguna
 
-![OiBlogLanding](https://github.com/Veloxium/oiblog/assets/111406150/448f8b21-7624-4444-94ab-ff26b90590b9)
+![image](https://github.com/Veloxium/oiblog/assets/111406150/1fd7ec4a-cb3e-472a-8e87-5325f4a89588)
+
 
 
 ## Deskripsi Proyek
