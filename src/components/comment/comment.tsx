@@ -38,9 +38,12 @@ function Comment({ postSlug }: { postSlug: string }) {
 
   const handleSubmit = async () => {
     setDisabled(true);
-    if(!desc) return toast.error("Komentar tidak boleh kosong", {
-      position: "top-right",
-    });
+    if (!desc) {
+      toast.error("Komentar tidak boleh kosong", {
+        position: "top-right",
+      });
+      return setDisabled(false);
+    }
     const res = await fetch(`https://oiblog.vercel.app/api/comments`, {
       method: "POST",
       body: JSON.stringify({
@@ -66,7 +69,7 @@ function Comment({ postSlug }: { postSlug: string }) {
     });
     mutate();
     const { message } = await res.json();
-    toast.info(message,{
+    toast.info(message, {
       position: "top-right",
     });
   };
@@ -118,7 +121,7 @@ function Comment({ postSlug }: { postSlug: string }) {
       ) : (
         data?.comments.map((item: any) => (
           <div className="mt-1" key={item.id}>
-            <div className="flex flex-col bg-slate-100 px-4 py-4 rounded-md items-start">
+            <div className="flex flex-col bg-slate-100 dark:bg-slate-800 px-4 py-4 rounded-md items-start">
               <div className="flex w-full justify-between items-center">
                 <div className="flex gap-4 items-center">
                   <div className="relative w-8 h-8 rounded-full aspect-square">
@@ -133,7 +136,9 @@ function Comment({ postSlug }: { postSlug: string }) {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <p className="-mt-1 font-medium">{item.user.name}</p>
+                    <p className="-mt-1 font-medium text-foreground">
+                      {item.user.name}
+                    </p>
                     <span className="-mt-2 text-sm text-gray-500">
                       {timeAgo(item.createdAt)}
                     </span>
@@ -163,7 +168,7 @@ function Comment({ postSlug }: { postSlug: string }) {
                 </div>
               </div>
               <div className="flex flex-col w-full">
-                <p className="">{item.desc}</p>
+                <p className="text-foreground">{item.desc}</p>
               </div>
             </div>
           </div>
