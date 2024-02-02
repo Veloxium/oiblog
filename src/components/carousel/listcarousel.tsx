@@ -23,7 +23,7 @@ function ListCarousel({ items }: { items: any }) {
       className="my-2"
     >
       <CarouselContent>
-        {items.map((item: any) => (
+        {items?.map((item: any) => (
           <CarouselItem key={item.id}>
             <CardCarousel item={item} />
           </CarouselItem>

@@ -97,7 +97,7 @@ function BlogForm() {
               <SelectValue placeholder="Pilih Topik" />
             </SelectTrigger>
             <SelectContent>
-              {kategori.map((item) => (
+              {kategori?.map((item) => (
                 <SelectItem
                   key={item.title}
                   value={item.title.replace(/\s/g, "").toLocaleLowerCase()}

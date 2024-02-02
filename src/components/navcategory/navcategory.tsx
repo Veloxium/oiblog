@@ -17,7 +17,7 @@ async function NavCategory() {
     <>
       {dataCategories && (
         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-          {dataCategories.map((item: { title: string; slug: string }) => (
+          {dataCategories?.map((item: { title: string; slug: string }) => (
             <ListItem
               key={item.title}
               title={item.title}
