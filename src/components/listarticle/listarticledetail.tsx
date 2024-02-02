@@ -40,7 +40,7 @@ async function ListArticleDetail() {
         }) => (
           <div key={item.id}>
             <Link href={`/article/${item.slug}`}>
-              <Card className="group flex flex-col justify-between cursor-pointer hover:bg-slate-100">
+              <Card className="group flex flex-col justify-between cursor-pointer hover:bg-slate-100 hover:dark:bg-slate-800">
                 <div>
                   <div className="relative w-full h-36 overflow-hidden rounded-md">
                     {item.img && (

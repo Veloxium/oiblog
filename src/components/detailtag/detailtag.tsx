@@ -10,11 +10,11 @@ function DetailTag({ post }: { post: any }) {
 
   return (
     <div className="flex justify-between items-center">
-      <p className="text-sm p-2 bg-slate-100 rounded-md">
+      <p className="text-sm p-2 bg-slate-100 dark:bg-slate-800 rounded-md">
         {dateFormat(post.createdAt.slice(0, 10))}
       </p>
       <div className="flex gap-2">
-        <div className="flex items-center gap-2 px-4 bg-slate-100 rounded-md">
+        <div className="flex items-center gap-2 px-4 bg-slate-100 dark:bg-slate-800 rounded-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

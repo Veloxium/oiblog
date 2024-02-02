@@ -53,7 +53,7 @@ function CardArticle({ item }: { item: any }) {
         <CardFooter>
           <div className="flex w-full justify-between items-center">
             <Link href={`/article/${item.slug}`}>
-              <Button variant={"outline"} className="bg-slate-50">
+              <Button variant={"outline"}>
                 Selengkapnya
               </Button>
             </Link>

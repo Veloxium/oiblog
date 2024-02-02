@@ -105,13 +105,13 @@ function Comment({ postSlug }: { postSlug: string }) {
           </div>
         </div>
       ) : (
-        <div className="flex gap-4 py-8 rounded-md justify-center bg-slate-200">
+        <div className="flex gap-4 py-8 rounded-md justify-center bg-slate-200 dark:bg-slate-800">
           <p>Login terlebih dahulu😭</p>
         </div>
       )}
       {isLoading ? (
         <div className="my-4">
-          <div className="flex gap-4 py-4 rounded-md justify-center bg-slate-200">
+          <div className="flex gap-4 py-4 rounded-md justify-center bg-slate-200 dark:bg-slate-800">
             <p>Loading...</p>
           </div>
         </div>
