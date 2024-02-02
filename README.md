@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Oi Blog .
 
-## Getting Started
+Selamat datang di Oi Blog - Platform Blog Serbaguna
 
-First, run the development server:
+![OiBlogLanding](https://github.com/Veloxium/oiblog/assets/111406150/448f8b21-7624-4444-94ab-ff26b90590b9)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deskripsi Proyek
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Oi Blog adalah platform blog yang memberikan kebebasan kepada pengguna untuk membuat dan membagikan konten mereka sendiri. Dengan berbagai topik yang tersedia, pengguna dapat mengekspresikan ide, pengalaman pribadi, atau membahas isu-isu menarik.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Fitur Utama
 
-## Learn More
+- **Bebas Memilih Topik**: Pengguna dapat memilih topik yang sesuai dengan minat mereka.
+- **Kebebasan Berekspresi**: Gaya penulisan campuran untuk memenuhi berbagai preferensi penulis.
+- **Minimalis dan Mudah Digunakan**: Antarmuka pengguna yang sederhana dan mudah dinavigasi.
+- **Fitur Komentar**: Interaksi dengan pembaca melalui fitur komentar yang mendukung diskusi.
 
-To learn more about Next.js, take a look at the following resources:
+Kontak
+Jika Anda memiliki pertanyaan atau masukan, silakan hubungi saya di [(https://www.instagram.com/mchfrnnda_/)https://www.instagram.com/mchfrnnda_/].
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy Blogging! 📝✨
