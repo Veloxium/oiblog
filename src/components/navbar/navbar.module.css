@@ -2,8 +2,8 @@
 
 .title {
   font-family: "Playfair Display", serif;
-  font-size: 1.25rem;
-  line-height: 2rem;
+  font-size: 1.30rem;
+  line-height: 1.20rem;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
@@ -16,7 +16,6 @@
   .title {
     font-family: "Playfair Display", serif;
     font-size: 1.5rem /* 24px */;
-    line-height: 2rem /* 32px */;
     line-height: 2rem;
     font-weight: bold;
     display: inline-flex;
