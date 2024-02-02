@@ -37,10 +37,9 @@ const fetcher = async (url: string) => {
 
 function PopProfile() {
   const [tagline, setTagline] = useState("");
-  const user = useSession().data?.user as any;
-  if (!user?.email) return null;
+  const { data: user } = useSession();
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/users/${user.email}`,
+    `http://localhost:3000/api/users/${user?.user.email}`,
     fetcher
   );
 

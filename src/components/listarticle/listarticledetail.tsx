@@ -38,35 +38,32 @@ async function ListArticleDetail() {
           createdAt: string;
           cat: { title: string };
         }) => (
-          <Link href={`/article/${item.slug}`}>
-            <Card
-              key={item.id}
-              className="group flex flex-col justify-between cursor-pointer hover:bg-slate-100"
-            >
-              <div>
-                <div className="relative w-full h-36 overflow-hidden rounded-md">
-                  {item.img && (
-                    <Image
-                      src={
-                       item.img
-                      }
-                      alt="card blog"
-                      className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
-                      fill
-                    />
-                  )}
+          <div key={item.id}>
+            <Link href={`/article/${item.slug}`}>
+              <Card className="group flex flex-col justify-between cursor-pointer hover:bg-slate-100">
+                <div>
+                  <div className="relative w-full h-36 overflow-hidden rounded-md">
+                    {item.img && (
+                      <Image
+                        src={item.img}
+                        alt="card blog"
+                        className="object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
+                        fill
+                      />
+                    )}
+                  </div>
+                  <CardHeader>
+                    <CardDescription className="capitalize">
+                      {item.cat.title} | {item.createdAt.slice(0, 10)}
+                    </CardDescription>
+                    <CardTitle className="line-clamp-3 py-2">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
                 </div>
-                <CardHeader>
-                  <CardDescription className="capitalize">
-                    {item.cat.title} | {item.createdAt.slice(0, 10)}
-                  </CardDescription>
-                  <CardTitle className="line-clamp-3 py-2">
-                    {item.title}
-                  </CardTitle>
-                </CardHeader>
-              </div>
-            </Card>
-          </Link>
+              </Card>
+            </Link>
+          </div>
         )
       )}
 
