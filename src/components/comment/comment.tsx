@@ -38,6 +38,9 @@ function Comment({ postSlug }: { postSlug: string }) {
 
   const handleSubmit = async () => {
     setDisabled(true);
+    if(!desc) return toast.error("Komentar tidak boleh kosong", {
+      position: "top-right",
+    });
     const res = await fetch(`https://oiblog.vercel.app/api/comments`, {
       method: "POST",
       body: JSON.stringify({
