@@ -20,4 +20,4 @@ Oi Blog adalah platform blog yang memberikan kebebasan kepada pengguna untuk mem
 Kontak
 Jika Anda memiliki pertanyaan atau masukan, silakan hubungi saya di [Instagram - @mchfrnnda_](https://www.instagram.com/mchfrnnda_/)
 
-Happy Blogging! 📝✨
+## Happy Blogging! 📝✨
