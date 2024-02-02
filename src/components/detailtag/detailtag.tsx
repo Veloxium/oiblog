@@ -2,10 +2,14 @@
 
 import { dateFormat } from "@/utils/dateformat";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 function DetailTag({ post }: { post: any }) {
   const copyToClipboard = (url: string) => {
     navigator.clipboard.writeText(`https://oiblog.vercel.app/article/${url}`);
+    toast.success("Link berhasil disalin", {
+      position: "top-right",
+    });
   };
 
   return (
