@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect } from "react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,16 +18,61 @@ import "react-quill/dist/quill.snow.css";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { app } from "@/utils/firebase";
+
+const storage = getStorage(app);
+
 
 function EditBlogForm({ data }: { data: any }) {
   const [value, setValue] = React.useState(data.desc);
   const [image, setImage] = React.useState(data.img);
+  const [file, setFile] = React.useState<File | null>(null);
+  const [imgUrl, setImgUrl] = React.useState("");
   const [selectTopik, setSelectTopik] = React.useState(data.catSlug);
   const { status } = useSession({
     required: true,
   });
 
   const router = useRouter();
+
+   useEffect(() => {
+     const upload = () => {
+       const name = `${Date.now() + file!.name}`;
+       const storageRef = ref(storage, name);
+       const uploadTask = uploadBytesResumable(storageRef, file!);
+       uploadTask.on(
+         "state_changed",
+         (snapshot) => {
+           const progress =
+             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           console.log("Upload is " + progress + "% done");
+           switch (snapshot.state) {
+             case "paused":
+               console.log("Upload is paused");
+               break;
+             case "running":
+               console.log("Upload is running");
+               break;
+           }
+         },
+         (error) => {
+           console.log(error);
+         },
+         () => {
+           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+             setImgUrl(downloadURL);
+           });
+         }
+       );
+     };
+     file && upload();
+   }, [file]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -63,15 +108,18 @@ function EditBlogForm({ data }: { data: any }) {
         .toLocaleLowerCase();
       formData.append("desc", value);
       formData.append("slug", slug);
-      const res = await fetch(`/api/posts/user/${data.id}`, {
-        method: "PUT",
-        body: formData,
-      });
-      const { message } = await res.json();
-      toast.info(message, {
-        position: "top-right",
-      });
-      router.push("/blogku");
+      formData.append("img", imgUrl);
+      const dataObject = Object.fromEntries(formData.entries());
+      console.log(dataObject);
+      // const res = await fetch("/api/posts", {
+      //   method: "POST",
+      //   body: JSON.stringify(dataObject),
+      // });
+      // const { message } = await res.json();
+      // toast.info(message, {
+      //   position: "top-right",
+      // });
+      // router.push("/blogku");
     } catch (error) {
       console.log(error);
     }
@@ -136,11 +184,11 @@ function EditBlogForm({ data }: { data: any }) {
           <Input
             type="file"
             placeholder="Gambar Latar"
-            name="image"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.files) {
                 const file = e.target.files[0];
                 setImage(URL.createObjectURL(file));
+                setFile(file);
               }
             }}
           />

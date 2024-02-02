@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect } from "react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,14 +17,58 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { app } from "@/utils/firebase";
+
+const storage = getStorage(app);
 
 function BlogForm() {
   const [value, setValue] = React.useState("");
   const [image, setImage] = React.useState("");
+  const [file, setFile] = React.useState<File | null>(null);
+  const [imgUrl, setImgUrl] = React.useState("");
   const [selectTopik, setSelectTopik] = React.useState("");
   const { status } = useSession({
     required: true,
   });
+
+  useEffect(() => {
+    const upload = () => {
+      const name = `${Date.now() + file!.name}`;
+      const storageRef = ref(storage, name);
+      const uploadTask = uploadBytesResumable(storageRef, file!);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setImgUrl(downloadURL);
+          });
+        }
+      );
+    };
+    file && upload();
+  }, [file]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -60,17 +104,21 @@ function BlogForm() {
         .toLocaleLowerCase();
       formData.append("desc", value);
       formData.append("slug", slug);
+      formData.append("img", imgUrl);
+      const dataObject = Object.fromEntries(formData.entries());
       const res = await fetch("/api/posts", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(dataObject),
       });
       const { message } = await res.json();
+      console.log(message)
       toast.info(message, {
         position: "top-right",
       });
       (e.target as HTMLFormElement).reset();
       setValue("");
       setSelectTopik("");
+      setImage("");
     } catch (error) {
       console.log(error);
     }
@@ -130,11 +178,11 @@ function BlogForm() {
           <Input
             type="file"
             placeholder="Gambar Latar"
-            name="image"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.files) {
                 const file = e.target.files[0];
                 setImage(URL.createObjectURL(file));
+                setFile(file);
               }
             }}
           />

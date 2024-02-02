@@ -38,28 +38,30 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
         return new NextResponse(JSON.stringify({ message: 'Not authorized', status: 401 }));
     }
     const email = session.user.email;
-    const body = await req.formData();
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+    const body = await req.json();
+    
+    // const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 
-    const ensureUploadDir = async () => {
-        try {
-            await fs.mkdir(uploadDir, { recursive: true });
-        } catch (error) {
-            console.error('Error creating upload directory:', error);
-        }
-    };
+    // const ensureUploadDir = async () => {
+    //     try {
+    //         await fs.mkdir(uploadDir, { recursive: true });
+    //     } catch (error) {
+    //         console.error('Error creating upload directory:', error);
+    //     }
+    // };
 
     try {
-        await ensureUploadDir();
+        // await ensureUploadDir();
 
-        const { title, slug, desc, catSlug } = Object.fromEntries(body.entries()) as {
-            title: string;
-            slug: string;
-            desc: string;
-            catSlug: string;
-        };
+        // const { title, slug, desc, catSlug } = Object.fromEntries(body.entries()) as {
+        //     title: string;
+        //     slug: string;
+        //     desc: string;
+        //     catSlug: string;
+        // };
 
-        const file = body.get('image') as File;
+        // const file = body.get('image') as File;
+
         const existingPost = await prisma.post.findUnique({
             where: {
                 id,
@@ -71,15 +73,15 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
         }
 
         // Remove the existing file
-        const existingFilePath = path.join(process.cwd(), 'public', existingPost.img);
-        await fs.unlink(existingFilePath);
+        // const existingFilePath = path.join(process.cwd(), 'public', existingPost.img);
+        // await fs.unlink(existingFilePath);
 
-        const timestamp = new Date().getTime();
-        const fileName = `${timestamp}_${file.name as string}`;
-        const filePath = path.join(uploadDir, fileName);
+        // const timestamp = new Date().getTime();
+        // const fileName = `${timestamp}_${file.name as string}`;
+        // const filePath = path.join(uploadDir, fileName);
 
-        const buffer = await file.arrayBuffer();
-        await fs.writeFile(filePath, Buffer.from(buffer));
+        // const buffer = await file.arrayBuffer();
+        // await fs.writeFile(filePath, Buffer.from(buffer));
 
         // Update the post with the new data and file
         await prisma.post.update({
@@ -87,11 +89,12 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
                 id,
             },
             data: {
-                slug,
-                title,
-                desc,
-                img: '/uploads/' + fileName,
-                catSlug,
+                // slug,
+                // title,
+                // desc,
+                // img: '/uploads/' + fileName,
+                // catSlug,
+                ...body,
                 userEmail: email,
             },
         });

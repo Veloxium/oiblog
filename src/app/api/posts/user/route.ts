@@ -65,10 +65,10 @@ export const DELETE = async (req: NextRequest) => {
         );
 
 
-        const fileName = postData.img.replace('/uploads/', '');
-        const filePath = path.join(process.cwd(), 'public', 'uploads', fileName);
+        // const fileName = postData.img.replace('/uploads/', '');
+        // const filePath = path.join(process.cwd(), 'public', 'uploads', fileName);
 
-        await fs.unlink(filePath);
+        // await fs.unlink(filePath);
 
         return new NextResponse(JSON.stringify({ message: "Blog berhasil dihapus" }));
     } catch (error) {
