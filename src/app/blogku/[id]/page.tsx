@@ -20,7 +20,6 @@ const getData = async (id: string) => {
 
 async function EditPage({ params }: { params: { id: string } }) {
   const id = params.id;
-  console.log(id)
   const { post } = await getData(id);
   return (
     <main>

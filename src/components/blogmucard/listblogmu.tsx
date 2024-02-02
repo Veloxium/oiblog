@@ -21,15 +21,20 @@ function ListBlogmu() {
     `http://localhost:3000/api/posts/user?email=${email}`,
     fetcher
   );
-  if (status === "loading")
+  if (isLoading || status === "loading")
     return (
       <main className="py-20 flex items-center justify-center">Loading...</main>
     );
   return (
     <div>
-      {data?.posts?.map((item: any) => (
+      {data.posts?.map((item: any) => (
         <BlogmuCard item={item} key={item.id} mutate={mutate} />
       ))}
+      {
+        data.posts.length === 0 && (
+          <main className="py-20 flex items-center justify-center">Tidak ada Blog</main>
+        )
+      }
     </div>
   );
 }

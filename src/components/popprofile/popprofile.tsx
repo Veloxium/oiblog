@@ -24,6 +24,7 @@ import { Input } from "../ui/input";
 import useSWR from "swr";
 import { toast } from "sonner";
 import { useState } from "react";
+import Link from "next/link";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -36,15 +37,15 @@ const fetcher = async (url: string) => {
 
 function PopProfile() {
   const [tagline, setTagline] = useState("");
-  const email = useSession().data?.user?.email;
-  if (!email) return null;
+  const user = useSession().data?.user as any;
+  if (!user?.email) return null;
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/users/${email}`,
+    `http://localhost:3000/api/users/${user.email}`,
     fetcher
   );
 
   const editTagline = async () => {
-    const res = await fetch(`http://localhost:3000/api/users/${email}`, {
+    const res = await fetch(`http://localhost:3000/api/users/${user.email}`, {
       method: "PUT",
       body: JSON.stringify({
         tagline,
@@ -138,6 +139,17 @@ function PopProfile() {
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
+            {user.role === "admin" && (
+              <Button
+                variant={"outline"}
+                className="w-full text-blue-600 dark:text-blue-400"
+                onClick={() => {
+                  window.location.href = "/admin-dashboard";
+                }}
+              >
+                Admin
+              </Button>
+            )}
             <AlertDialog>
               <AlertDialogTrigger
                 className={cn(buttonVariants({ variant: "default" }))}

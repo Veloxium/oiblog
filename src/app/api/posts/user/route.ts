@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/connect";
 import { getAuthSession } from "@/utils/auth";
+import path from "path";
+import fs from 'fs/promises';
+
 
 export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url);
@@ -41,6 +44,17 @@ export const DELETE = async (req: NextRequest) => {
     }
     const userEmail = session.user.email;
     try {
+        const postData = await prisma.post.findUnique({
+            where: {
+                id: id,
+                userEmail: userEmail,
+            },
+        });
+
+        if (!postData || !postData.img) {
+            return new NextResponse(JSON.stringify({ message: "Post not found or not authorized" }));
+        }
+
         await prisma.post.delete(
             {
                 where: {
@@ -49,7 +63,14 @@ export const DELETE = async (req: NextRequest) => {
                 },
             }
         );
-        return new NextResponse(JSON.stringify({ message : "Blog berhasil dihapus" }));
+
+
+        const fileName = postData.img.replace('/uploads/', '');
+        const filePath = path.join(process.cwd(), 'public', 'uploads', fileName);
+
+        await fs.unlink(filePath);
+
+        return new NextResponse(JSON.stringify({ message: "Blog berhasil dihapus" }));
     } catch (error) {
         console.error(error);
         return new NextResponse(JSON.stringify({ message: "Something went wrong" }));

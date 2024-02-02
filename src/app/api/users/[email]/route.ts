@@ -5,10 +5,10 @@ import { getAuthSession } from "@/utils/auth";
 export const GET = async (req: NextRequest, { params }: { params: { email: string } }) => {
     const { email } = params;
     const session = await getAuthSession();
-    if (!session) {
-        return new NextResponse(JSON.stringify({ message: 'Not authorized', status: 401 }));
-    }
     try {
+        if (!session || session.user.email !== email) {
+            return new NextResponse(JSON.stringify({ message: 'Not authorized', status: 401 }));
+        }
         const user = await prisma.user.findUnique({
             where: {
                 email: email,
