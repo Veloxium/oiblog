@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 function DetailTag({ post }: { post: any }) {
   const copyToClipboard = (url: string) => {
-    navigator.clipboard.writeText(`http://localhost:3000/article/${url}`);
+    navigator.clipboard.writeText(`https://oiblog.vercel.app/article/${url}`);
   };
 
   return (

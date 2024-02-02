@@ -17,7 +17,7 @@ import { dateFormat } from "@/utils/dateformat";
 
 function CardArticle({ item }: { item: any }) {
   const copyToClipboard = (url: string) => {
-    navigator.clipboard.writeText(`http://localhost:3000/article/${url}`);
+    navigator.clipboard.writeText(`https://oiblog.vercel.app/article/${url}`);
   };
   return (
     <Card

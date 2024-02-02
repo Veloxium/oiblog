@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const getData = async () => {
-  const res = await fetch(`http://localhost:3000/api/posts/newest`, {
+  const res = await fetch(`https://oiblog.vercel.app/api/posts/newest`, {
     method: "GET",
   });
   if (!res.ok) {

@@ -38,7 +38,7 @@ const fetcher = async (url: string) => {
 
 function TableUser() {
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/admin`,
+    `https://oiblog.vercel.app/api/admin`,
     fetcher
   );
   console.log(data);
@@ -49,9 +49,12 @@ function TableUser() {
   }
 
   const handleUser = async (email: string) => {
-    const res = await fetch(`http://localhost:3000/api/admin?user=${email}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://oiblog.vercel.app/api/admin?user=${email}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await res.json();
 
     if (!res.ok) {
@@ -64,7 +67,7 @@ function TableUser() {
   };
 
   const handleBlog = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/api/admin?post=${id}`, {
+    const res = await fetch(`https://oiblog.vercel.app/api/admin?post=${id}`, {
       method: "DELETE",
     });
     const data = await res.json();

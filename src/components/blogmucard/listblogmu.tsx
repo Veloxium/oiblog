@@ -18,7 +18,7 @@ function ListBlogmu() {
   const { status } = useSession({ required: true });
   const email = useSession().data?.user?.email;
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/posts/user?email=${email}`,
+    `https://oiblog.vercel.app/api/posts/user?email=${email}`,
     fetcher
   );
   if (isLoading || status === "loading")

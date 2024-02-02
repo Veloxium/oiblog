@@ -32,13 +32,13 @@ function Comment({ postSlug }: { postSlug: string }) {
   const [desc, setDesc] = useState("");
   const [disabled, setDisabled] = useState(false);
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    `https://oiblog.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
 
   const handleSubmit = async () => {
     setDisabled(true);
-    const res = await fetch(`http://localhost:3000/api/comments`, {
+    const res = await fetch(`https://oiblog.vercel.app/api/comments`, {
       method: "POST",
       body: JSON.stringify({
         desc,
@@ -55,7 +55,7 @@ function Comment({ postSlug }: { postSlug: string }) {
   };
 
   const handleDelete = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/api/comments`, {
+    const res = await fetch(`https://oiblog.vercel.app/api/comments`, {
       method: "DELETE",
       body: JSON.stringify({
         id,

@@ -39,17 +39,20 @@ function PopProfile() {
   const [tagline, setTagline] = useState("");
   const { data: user } = useSession();
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/users/${user?.user.email}`,
+    `https://oiblog.vercel.app/api/users/${user?.user.email}`,
     fetcher
   );
 
   const editTagline = async () => {
-    const res = await fetch(`http://localhost:3000/api/users/${user?.user.email}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        tagline,
-      }),
-    });
+    const res = await fetch(
+      `https://oiblog.vercel.app/api/users/${user?.user.email}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          tagline,
+        }),
+      }
+    );
     const { message } = await res.json();
     mutate();
     toast.success(message, {

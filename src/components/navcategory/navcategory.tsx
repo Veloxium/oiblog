@@ -3,7 +3,7 @@ import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import React, { useEffect, useState } from "react";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories");
+  const res = await fetch("https://oiblog.vercel.app/api/categories");
   if (!res.ok) {
     throw new Error(res.statusText);
   }

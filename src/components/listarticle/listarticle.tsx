@@ -3,7 +3,7 @@ import CardArticle from "./cardarticle";
 
 const getData = async (page: number, cat: string, search: string) => {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat}&search=${search}`,
+    `https://oiblog.vercel.app/api/posts?page=${page}&cat=${cat}&search=${search}`,
     {
       method: "GET",
       cache: "no-cache",

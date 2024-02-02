@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 
 const getData = async (id: string) => {
-  const res = await fetch(`http://localhost:3000/api/posts/user/${id}`, {
+  const res = await fetch(`https://oiblog.vercel.app/api/posts/user/${id}`, {
     method: "GET",
     cache: "no-cache",
   });
