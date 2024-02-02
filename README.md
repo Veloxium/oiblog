@@ -1,6 +1,6 @@
 # Oi Blog .
 
-Selamat datang di Oi Blog - Platform Blog Serbaguna
+Selamat datang di Oi Blog - Blog from everyone
 
 ![image](https://github.com/Veloxium/oiblog/assets/111406150/1fd7ec4a-cb3e-472a-8e87-5325f4a89588)
 
