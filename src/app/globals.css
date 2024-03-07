@@ -121,3 +121,6 @@ p {
 .textdesc * {
   @apply text-foreground !important;
 }
+.textdesccarousel * {
+  @apply text-background !important;
+}
