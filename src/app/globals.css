@@ -118,3 +118,6 @@ p {
 .btn-crl:hover{
   opacity: 1 !important;
 }
+.textdesc{
+  @apply text-foreground!important;
+}

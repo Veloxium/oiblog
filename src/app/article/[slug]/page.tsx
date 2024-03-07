@@ -47,7 +47,7 @@ async function DetailPage({ params }: { params: { slug: string } }) {
             </div>
             <div
               dangerouslySetInnerHTML={{ __html: post.desc }}
-              className="text-lg"
+              className="text-lg textdesc"
             />
             <div className="my-10">
               <Comment postSlug={slug} />
