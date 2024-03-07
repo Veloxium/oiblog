@@ -93,7 +93,7 @@ function Comment({ postSlug }: { postSlug: string }) {
             <textarea
               value={desc}
               name="desc"
-              className="w-full bg-slate-100 px-4 py-3 rounded-md"
+              className="w-full bg-slate-100 px-4 py-3 rounded-md dark:text-black"
               rows={4}
               onChange={(e) => setDesc(e.target.value)}
               placeholder="Tulis komentar disini..."
