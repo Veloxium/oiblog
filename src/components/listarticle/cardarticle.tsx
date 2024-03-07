@@ -44,7 +44,7 @@ function CardArticle({ item }: { item: any }) {
         </CardHeader>
         <CardContent>
           <div
-            className="-mt-5 line-clamp-3"
+            className="-mt-5 line-clamp-3 textdesc"
             dangerouslySetInnerHTML={{ __html: item.desc }}
           />
         </CardContent>
@@ -53,9 +53,7 @@ function CardArticle({ item }: { item: any }) {
         <CardFooter>
           <div className="flex w-full justify-between items-center">
             <Link href={`/article/${item.slug}`}>
-              <Button variant={"outline"}>
-                Selengkapnya
-              </Button>
+              <Button variant={"outline"}>Selengkapnya</Button>
             </Link>
             <Button
               variant={"default"}
