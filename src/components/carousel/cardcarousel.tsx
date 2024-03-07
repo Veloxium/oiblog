@@ -26,7 +26,7 @@ function CardCarousel({ item }: { item: any }) {
           </p>
           <p className=" text-white font-bold text-3xl">{item.title}</p>
           <div
-            className="text-white text-lg line-clamp-3"
+            className="text-white text-lg line-clamp-3 textdesc"
             dangerouslySetInnerHTML={{ __html: item.desc }}
           />
           <p className="text-white">Oleh : {item.user.name}</p>
