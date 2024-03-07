@@ -70,7 +70,7 @@ function BlogmuCard({ item, mutate }: { item: any; mutate: any }) {
       <div>
         <CardFooter className="min-w-[200px] flex-col items-center justify-center h-full gap-4">
           <Link href={`/blogku/${item.id}`} className="w-full" >
-            <Button variant={"outline"} className="w-full bg-slate-50">
+            <Button variant={"outline"} className="w-full bg-slate-50 dark:bg-slate-800">
               Edit
             </Button>
           </Link>
